@@ -1,0 +1,277 @@
+@use './colors' as c;
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 1.6rem;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	background: c.$bg-gradient;
+	color: c.$pure-white;
+	overflow: hidden;
+}
+
+input,
+button {
+    font-family: 'Montserrat', sans-serif;
+} 
+
+
+.todo {
+	position: absolute;
+    border: 1px solid c.$lighter-white;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	overflow: hidden;
+}
+
+.todo-title {
+    font-size: 4rem;
+	letter-spacing: 5px;
+	font-weight: 200;
+}
+
+.header {
+    padding: 2em;
+	text-align: center;
+	background-color: c.$light-black;
+}
+
+.input-box {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 2em;
+	gap: 2em;
+}
+
+.todo-input {
+	width: 100%;
+	max-width: 50rem;
+}
+
+
+.todo-input,
+.popup-input {
+    background: none;
+	border: 1px solid c.$lighter-white;
+	font-size: 2rem;
+	padding: 0.5em;
+	color: c.$pure-white;
+	transition: background-color 0.3s;
+    border: 1px solid c.$light-white;
+    
+	&:focus {
+        outline: none;
+		background-color: c.$hover;
+	}
+}
+
+.add-btn {
+    padding: 1em 2.5em;
+	text-transform: uppercase;
+	background: none;
+	color: c.$pure-white;
+	border: 1px solid c.$light-white;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	letter-spacing: 2px;
+	font-weight: bold;
+	font-size: 1.2rem;
+    
+	&:hover,
+	&:focus {
+        outline: none;
+		background-color: c.$hover;
+	}
+}
+
+.todo-content {
+    height: 100%;
+	background-color: c.$lighter-white;
+	padding: 2em;
+	overflow: scroll;
+}
+
+.todo-list-title,
+.error-info {
+    text-align: center;
+}
+
+.todo-list-title {
+    font-size: 2.5rem;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.error-info {
+    margin-top: 1em;
+	color: c.$hover;
+	transition: all 0.3s;
+	font-weight: bold;
+}
+
+.todo-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2em;
+	list-style: none;
+
+}
+
+.todo-list-item {
+    position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 70rem;
+	height: 5rem;
+	background-color: c.$light-black;
+	padding: 0 1em;
+	margin: 0.5em 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.tools {
+    display: flex;
+	justify-content: space-between;
+	position: absolute;
+	right: 0;
+	height: 100%;
+	background-color: c.$pure-white;
+    
+	.fa-check-double,
+	.fa-xmark {
+        pointer-events: none;
+	}
+    
+	.edit,
+	.delete,
+	.complete {
+        background: none;
+		border: none;
+		padding: 0 1em;
+		cursor: pointer;
+		transition: background-color 0.3s;
+		font-size: 1.2rem;
+        
+		&:hover {
+            background-color: c.$light-white;
+		}
+	}
+    
+	.edit {
+        font-weight: bold;
+		text-transform: uppercase;
+	}
+    
+	.delete {
+        color: c.$red;
+		font-size: 1.8rem;
+	}
+    
+	.complete {
+        font-size: 1.8rem;
+		color: c.$green;
+	}
+}
+
+.todo-name {
+    margin-left: 1em;
+	font-size: 1.8rem;
+	letter-spacing: 1px;
+}
+
+.popup {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    position: absolute;
+	width: 100%;
+	top: -400px;
+	border: 1px solid c.$lighter-white;
+	background-color: c.$popup-black;
+	padding: 2em;
+	transition: top 0.5s;
+	backdrop-filter: blur(10px);
+	z-index: 1;
+	height: 28rem;
+}
+
+.popup-title {
+    text-align: center;
+	letter-spacing: 2px;
+	font-size: 2.2rem;
+}
+
+.popup-input {
+    width: 100%;
+    border: 1px solid c.$light-white;
+	max-width: 70rem;
+}
+
+
+
+.popup-btns {
+    display: flex;
+	justify-content: center;
+	margin-top: 2em;
+    
+	.popup-confirm,
+	.popup-cancel {
+        padding: 1em 2em;
+		margin: 0 1em;
+		background: none;
+		font-size: 1.2rem;
+		border: 1px solid c.$light-white;
+		color: c.$pure-white;
+		cursor: pointer;
+		transition: background-color 0.3s;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+        
+		&:hover,
+		&:focus {
+            outline: none;
+			background-color: c.$light-black;
+		}
+	}
+}
+.show-popup {
+    top: 0;
+}
+
+.popup-info {
+    text-align: center;
+    margin: 2em 0;
+    color: c.$hover;
+    font-size: 1.4rem;
+	font-weight: bold;
+}
+
+
+.completed {
+    text-decoration: line-through;
+    font-style: italic;
+    font-weight: 200;
+    color: c.$light-white;
+}

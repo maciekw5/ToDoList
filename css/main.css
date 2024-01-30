@@ -1,0 +1,265 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  background: linear-gradient(45deg, rgb(140, 145, 198) 0%, rgb(47, 98, 94) 87%);
+  color: #fff;
+  overflow: hidden;
+}
+
+input,
+button {
+  font-family: "Montserrat", sans-serif;
+}
+
+.todo {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.todo-title {
+  font-size: 4rem;
+  letter-spacing: 5px;
+  font-weight: 200;
+}
+
+.header {
+  padding: 2em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.input-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  gap: 2em;
+}
+
+.todo-input {
+  width: 100%;
+  max-width: 50rem;
+}
+
+.todo-input,
+.popup-input {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 2rem;
+  padding: 0.5em;
+  color: #fff;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+.todo-input:focus,
+.popup-input:focus {
+  outline: none;
+  background-color: rgb(46, 89, 112);
+}
+
+.add-btn {
+  padding: 1em 2.5em;
+  text-transform: uppercase;
+  background: none;
+  color: #fff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.add-btn:hover, .add-btn:focus {
+  outline: none;
+  background-color: rgb(46, 89, 112);
+}
+
+.todo-content {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2em;
+  overflow: scroll;
+}
+
+.todo-list-title,
+.error-info {
+  text-align: center;
+}
+
+.todo-list-title {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.error-info {
+  margin-top: 1em;
+  color: rgb(46, 89, 112);
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+  list-style: none;
+}
+
+.todo-list-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 70rem;
+  height: 5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0 1em;
+  margin: 0.5em 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.tools {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  background-color: #fff;
+}
+.tools .fa-check-double,
+.tools .fa-xmark {
+  pointer-events: none;
+}
+.tools .edit,
+.tools .delete,
+.tools .complete {
+  background: none;
+  border: none;
+  padding: 0 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1.2rem;
+}
+.tools .edit:hover,
+.tools .delete:hover,
+.tools .complete:hover {
+  background-color: #ddd;
+}
+.tools .edit {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.tools .delete {
+  color: rgb(184, 65, 44);
+  font-size: 1.8rem;
+}
+.tools .complete {
+  font-size: 1.8rem;
+  color: rgb(51, 143, 51);
+}
+
+.todo-name {
+  margin-left: 1em;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: -400px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2em;
+  transition: top 0.5s;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 1;
+  height: 28rem;
+}
+
+.popup-title {
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+}
+
+.popup-input {
+  width: 100%;
+  border: 1px solid #ddd;
+  max-width: 70rem;
+}
+
+.popup-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+.popup-btns .popup-confirm,
+.popup-btns .popup-cancel {
+  padding: 1em 2em;
+  margin: 0 1em;
+  background: none;
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.popup-btns .popup-confirm:hover, .popup-btns .popup-confirm:focus,
+.popup-btns .popup-cancel:hover,
+.popup-btns .popup-cancel:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.show-popup {
+  top: 0;
+}
+
+.popup-info {
+  text-align: center;
+  margin: 2em 0;
+  color: rgb(46, 89, 112);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+  font-weight: 200;
+  color: #ddd;
+}/*# sourceMappingURL=main.css.map */
